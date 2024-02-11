@@ -19,7 +19,7 @@ public final class App {
             var page = ctx.queryParamAsClass("page", Integer.class).getOrDefault(1);
             var per = ctx.queryParamAsClass("per", Integer.class).getOrDefault(5);
             if (page == 1) {
-                ctx.json(USERS.subList(0, per - 1));
+                ctx.json(USERS.subList(0, per));
             } else {
                 ctx.json(USERS.subList((page - 1) * per + 1, (page - 1) * per + per + 1));
             }
