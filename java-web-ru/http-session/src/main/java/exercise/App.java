@@ -18,15 +18,15 @@ public final class App {
         app.get("/users", ctx -> {
             var page = ctx.queryParamAsClass("page", Integer.class).getOrDefault(1);
             var per = ctx.queryParamAsClass("per", Integer.class).getOrDefault(5);
-            if (page == 1) {
-                ctx.json(USERS.subList(0, per));
-            } else {
-                ctx.json(USERS.subList((page - 1) * per + 1, (page - 1) * per + per + 1));
-            }
+            int startIndex = (page - 1) * per;
+            int endIndex = Math.min(startIndex + per, USERS.size());
+
+            List<Map<String, String>> usersSubset = USERS.subList(startIndex, endIndex);
+            ctx.json(usersSubset);
         });
-        app.get("/users/all", ctx -> {
-            ctx.json(USERS);
-        });
+//        app.get("/users/all", ctx -> {
+//            ctx.json(USERS);
+//        });
         // END
 
         return app;
