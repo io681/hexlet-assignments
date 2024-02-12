@@ -20,14 +20,14 @@ public final class App {
 
         // BEGIN
         app.get("/companies/{id}", ctx -> {
-                    var id = ctx.pathParamAsClass("id", Integer.class).get();
+            var id = ctx.pathParamAsClass("id", Integer.class).get();
 
-                    if (id > COMPANIES.size()) {
-                        throw new NotFoundResponse("Company not found");
-                    } else {
-                        ctx.json(COMPANIES.get(id));
-                    }
-                });
+            if (id > COMPANIES.size()) {
+                throw new NotFoundResponse("Company not found");
+            } else {
+                ctx.json(COMPANIES.get(id));
+            }
+        });
         // END
 
         app.get("/companies", ctx -> {
