@@ -2,7 +2,6 @@ package exercise;
 
 import io.javalin.Javalin;
 
-import java.util.ArrayList;
 import java.util.List;
 import exercise.model.User;
 import exercise.dto.users.UsersPage;
@@ -28,7 +27,7 @@ public final class App {
             List<User> users;
             if (term != null) {
                 users = USERS.stream()
-                        .filter(c -> StringUtils.startsWithIgnoreCase(c.getFirstName(),term))
+                        .filter(c -> StringUtils.startsWithIgnoreCase(c.getFirstName(), term))
                         .collect(Collectors.toList());
             } else {
                 users = USERS;
