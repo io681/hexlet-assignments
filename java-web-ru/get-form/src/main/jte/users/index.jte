@@ -11,15 +11,21 @@
             @if(usersPage.getUsers().isEmpty())
                 <p>Результаты не найдены</p>
             @else
-                <table>
-                    @for(var user : usersPage.getUsers())
-                        <tr>
-                            <td><p><a href="/users/${user.getId()}">${user.getFirstName()}</a></p></td>
-                            <td><p>${user.getLastName()}</p></td>
-                            <td><p>${user.getEmail()}</p></td>
-                        </tr>
-                    @endfor
-                </table>
+                @for(var user : usersPage.getUsers())
+                    <div>
+                        <h2><a href="/users/${user.getId()}">${user.getFirstName()} ${user.getLastName()}</a></h2>
+                        <p>${user.getEmail()}</p>
+                    </div>
+                @endfor
+<%--                <table>--%>
+<%--                    @for(var user : usersPage.getUsers())--%>
+<%--                        <tr>--%>
+<%--                            <td><p><a href="/users/${user.getId()}">${user.getFirstName()}</a></p></td>--%>
+<%--                            <td><p>${user.getLastName()}</p></td>--%>
+<%--                            <td><p>${user.getEmail()}</p></td>--%>
+<%--                        </tr>--%>
+<%--                    @endfor--%>
+<%--                </table>--%>
             @endif
         </div>
 `)
