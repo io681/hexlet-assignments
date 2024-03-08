@@ -12,8 +12,10 @@ public class Application {
         for (Method method : Address.class.getDeclaredMethods()) {
             if (method.isAnnotationPresent(Inspect.class)) {
                 try {
+                    String type = method.getReturnType().getTypeName();
+                    type = type.equals("java.lang.String") ? "String" : type;
                     System.out.println("Method " + method.getName() + " returns a value of type "
-                            + method.getReturnType());
+                            + type);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
