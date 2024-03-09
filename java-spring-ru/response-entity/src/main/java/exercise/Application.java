@@ -38,7 +38,7 @@ public class Application {
                 .body(result);
     }
 
-    @GetMapping("/pages/{id}")
+    @GetMapping("/posts/{id}")
     public ResponseEntity<Post> show(@PathVariable String id) {
         var page = posts.stream()
                 .filter(p -> p.getId().equals(id))
