@@ -33,7 +33,7 @@ public class Application {
         return posts.stream().skip((long) (page - 1) * limit).limit(limit).toList();
     }
 
-    @GetMapping("/post/{id}")
+    @GetMapping("/posts/{id}")
     public Optional<Post> show(@PathVariable String id) {
         var page = posts.stream()
                 .filter(p -> p.getId().equals(id))
