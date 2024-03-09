@@ -1,6 +1,7 @@
 package exercise.controller.users;
 
 import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,18 +20,25 @@ import exercise.Data;
 @RequestMapping("/api")
 public class PostsController {
     private List<Post> posts = Data.getPosts();
+
     @GetMapping("/users/{id}/posts")
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<Post>> indexByUser(@PathVariable String userId) {
-        var result = posts.stream().filter(p -> p.getUserId() == Integer.parseInt(userId)).toList();
-        return ResponseEntity.ok().body(result);
+    public ResponseEntity<List<Post>> indexByUser(@PathVariable String id) {
+        return ResponseEntity.ok()
+                .body(posts.stream().filter(p -> p.getUserId() == Integer.parseInt(id)).toList());
     }
 
     @PostMapping("/users/{id}/posts")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Post> createByUser(@PathVariable String userId, @RequestBody Post post) {
-        post.setUserId(Integer.parseInt(userId));
-        return ResponseEntity.ok().body(post);
+    public Post createByUser(@PathVariable String id, @RequestBody Post dataPost) {
+        var post = new Post();
+
+        post.setUserId(Integer.parseInt(id));
+        post.setBody(dataPost.getBody());
+        post.setTitle(dataPost.getTitle());
+        post.setSlug(dataPost.getSlug());
+
+        posts.add(post);
+        return post;
     }
 }
 // END
