@@ -20,12 +20,14 @@ import exercise.Data;
 public class PostsController {
     private List<Post> posts = Data.getPosts();
     @GetMapping("/users/{id}/posts")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<Post>> indexByUser(@PathVariable String userId) {
         var result = posts.stream().filter(p -> p.getUserId() == Integer.parseInt(userId)).toList();
         return ResponseEntity.ok().body(result);
     }
 
     @PostMapping("/users/{id}/posts")
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Post> createByUser(@PathVariable String userId, @RequestBody Post post) {
         post.setUserId(Integer.parseInt(userId));
         return ResponseEntity.ok().body(post);
