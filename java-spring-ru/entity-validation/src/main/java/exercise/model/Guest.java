@@ -38,6 +38,7 @@ public class Guest {
     private String email;
     
     @Pattern(regexp = "^\\+[0-9]{11,13}$")
+    @Column(unique = true)
     private String phoneNumber;
 
     @NotNull

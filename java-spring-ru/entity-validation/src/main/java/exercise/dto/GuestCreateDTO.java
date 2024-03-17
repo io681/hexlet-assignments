@@ -1,5 +1,6 @@
 package exercise.dto;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +18,7 @@ public class GuestCreateDTO {
     private String email;
 
     @Pattern(regexp = "^\\+[0-9]{11,13}$")
+    @Column(unique = true)
     private String phoneNumber;
 
     @NotNull
