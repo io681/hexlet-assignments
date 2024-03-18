@@ -85,16 +85,7 @@ public class TasksController {
     @DeleteMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
-        var task = taskRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Not Found: " + id));
-
-        var assigneeId = task.getAssignee().getId();
-        var user = userRepository.findById(assigneeId)
-                .orElseThrow(() -> new ResourceNotFoundException("Not Found User with id: " + assigneeId));
-
-        user.removeTask(task);
-
-        taskRepository.delete(task);
+        taskRepository.deleteById(id);
     }
     // END
 }
