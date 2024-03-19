@@ -37,7 +37,6 @@ public class ProductsController {
     private CategoryRepository categoryRepository;
 
     @GetMapping(path = "")
-    @ResponseStatus(HttpStatus.OK)
     public List<ProductDTO> index() {
         var products = productRepository.findAll();
         return products.stream()
@@ -46,7 +45,6 @@ public class ProductsController {
     }
 
     @GetMapping(path = "{id}")
-    @ResponseStatus(HttpStatus.OK)
     public ProductDTO show(@PathVariable Long id) {
         var product = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Not Found: " + id));
@@ -64,7 +62,6 @@ public class ProductsController {
     }
 
     @PutMapping(path = "/{id}")
-    @ResponseStatus(HttpStatus.OK)
     public ProductDTO update(@PathVariable Long id, @Valid @RequestBody ProductUpdateDTO dto) {
         var product = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Not Found: " + id));
